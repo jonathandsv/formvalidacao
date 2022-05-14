@@ -8,7 +8,7 @@
             name="password" 
             formControlName="password"
             pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" 
-            title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" 
+            title="Deve conter pelo menos um número e uma letra maiúscula e minúscula e pelo menos 8 ou mais caracteres" 
             required
             >
     <small style="color: red;" *ngIf="form?.get('password')?.errors?.['required'] && (form?.get('password')?.dirty || form?.get('password')?.touched)">Campo Obrigatório</small>
@@ -16,24 +16,18 @@
     <br />
     
     <label for="passwordConfirm">Confimação de senha</label>
-    <input type="passwordConfirm" 
+    <input type="password" 
             id="passwordConfirm" 
             name="passwordConfirm" 
             formControlName="passwordConfirm"
             pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" 
-            title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" 
+            title="Deve conter pelo menos um número e uma letra maiúscula e minúscula e pelo menos 8 ou mais caracteres" 
             required>
     <small style="color: red;" *ngIf="form?.get('passwordConfirm')?.errors?.['required'] && (form?.get('passwordConfirm')?.dirty || form?.get('passwordConfirm')?.touched) ">Campo Obrigatório</small>
+    <br />
+    <small style="color: red;" *ngIf="form?.errors?.['notSame'] && (form?.get('passwordConfirm')?.dirty || form?.get('passwordConfirm')?.touched) ">As Senhas não são iguais</small>
     
     <input type="submit" value="Submit" value="Salvar">
     
   </form>
-</div>
-
-<div id="message">
-  <h3>A senha deve conter os seguintes passos:</h3>
-  <p id="letter" class="invalid">A <b>lowercase</b> letter</p>
-  <p id="capital" class="invalid">A <b>capital (uppercase)</b> letter</p>
-  <p id="number" class="invalid">A <b>number</b></p>
-  <p id="length" class="invalid">Minimum <b>8 characters</b></p>
 </div>

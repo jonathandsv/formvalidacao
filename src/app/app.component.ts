@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -15,7 +15,15 @@ export class AppComponent {
     this.form = this.formBuilder.group({
       password: ['', Validators.required],
       passwordConfirm: ['', Validators.required]
-    })
+    }, { validators: this.checkPasswords })
 
+  }
+
+  checkPasswords(group: AbstractControl): ValidationErrors | null {
+    const password = group.get('password')?.value;
+    const passwordConfirm = group.get('passwordConfirm')?.value;
+    
+
+    return password === passwordConfirm ? null : { notSame: true }
   }
 }
